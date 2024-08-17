@@ -28,7 +28,8 @@ func _physics_process(delta: float):
 		movement_direction = next_movement_direction
 
 	velocity = speed * movement_direction
-	
+
+	adjust_rotation()	
 	animate()	
 	move_and_slide()
 
@@ -52,6 +53,18 @@ func can_move_in_direction(dir: Vector2, delta: float) -> bool:
 	shape_query.transform = global_transform.translated(dir * speed * delta * 1.414)
 	var result = get_world_2d().direct_space_state.intersect_shape(shape_query)
 	return result.size() == 0
+
+func adjust_rotation():
+	if movement_direction == Vector2.RIGHT:
+		rotation_degrees = 0
+	elif movement_direction == Vector2.DOWN:
+		rotation_degrees = 90
+	elif movement_direction == Vector2.LEFT:
+		rotation_degrees = 0
+	elif movement_direction == Vector2.UP:
+		rotation_degrees = 270
+	else:
+		next_movement_direction = Vector2.ZERO
 
 func animate():
 	if movement_direction == Vector2.ZERO:
