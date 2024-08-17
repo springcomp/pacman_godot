@@ -747,8 +747,8 @@ position = Vector2(400, -240)
 [node name="Pellet242" parent="Pellets" instance=ExtResource("3_4edy7")]
 position = Vector2(400, -208)
 
-[node name="Pellet115" parent="." instance=ExtResource("3_4edy7")]
+[node name="Pellet243" parent="Pellets" instance=ExtResource("3_4edy7")]
 position = Vector2(48, 400)
 
-[node name="Pellet116" parent="." instance=ExtResource("3_4edy7")]
+[node name="Pellet244" parent="Pellets" instance=ExtResource("3_4edy7")]
 position = Vector2(48, 432)
