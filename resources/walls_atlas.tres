@@ -76,7 +76,3 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_rbpqe")
-pattern_0 = SubResource("TileMapPattern_eslyg")
-pattern_1 = SubResource("TileMapPattern_5rkn5")
-pattern_2 = SubResource("TileMapPattern_qohxb")
-pattern_3 = SubResource("TileMapPattern_y330y")
