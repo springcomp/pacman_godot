@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxnydrt1bjb3w"]
+
+[ext_resource type="FontFile" uid="uid://2hq75lgcdam8" path="res://fonts/joystix monospace.otf" id="1_ewio7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6du7t"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.99779, 0.99779, 0.99779, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(220, 148)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6du7t")
+
+[node name="GameOverLabel" type="Label" parent="MarginContainer/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.5
+offset_top = -17.0
+offset_right = 104.5
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.7, 0.2, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_ewio7")
+theme_override_font_sizes/font_size = 24
+text = "Game Over"
+horizontal_alignment = 1

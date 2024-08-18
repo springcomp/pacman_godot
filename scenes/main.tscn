@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=4 uid="uid://d21tldujj8rln"]
+[gd_scene load_steps=8 format=4 uid="uid://d21tldujj8rln"]
 
 [ext_resource type="TileSet" uid="uid://detupj0hig80g" path="res://resources/walls_atlas.tres" id="1_470un"]
 [ext_resource type="PackedScene" uid="uid://bftepayvxee05" path="res://scenes/puckman.tscn" id="2_v01xd"]
 [ext_resource type="PackedScene" uid="uid://m5jxu0gffa6k" path="res://scenes/pellet.tscn" id="3_4edy7"]
+[ext_resource type="Script" path="res://scenes/pellets.gd" id="3_onfe8"]
 [ext_resource type="PackedScene" uid="uid://bek23folyws8s" path="res://scenes/large_pellet.tscn" id="4_43mt0"]
+[ext_resource type="PackedScene" uid="uid://dxnydrt1bjb3w" path="res://scenes/ui.tscn" id="6_oosid"]
+[ext_resource type="Script" path="res://scenes/ui.gd" id="7_e5xph"]
 
 [node name="Main" type="Node"]
 
@@ -20,6 +23,7 @@ position = Vector2(0, 80)
 scale = Vector2(2.36, 2.36)
 
 [node name="Pellets" type="Node" parent="."]
+script = ExtResource("3_onfe8")
 
 [node name="Pellet" parent="Pellets" instance=ExtResource("3_4edy7")]
 position = Vector2(-144, 272)
@@ -752,3 +756,8 @@ position = Vector2(48, 400)
 
 [node name="Pellet244" parent="Pellets" instance=ExtResource("3_4edy7")]
 position = Vector2(48, 432)
+
+[node name="UI" parent="." instance=ExtResource("6_oosid")]
+script = ExtResource("7_e5xph")
+
+[connection signal="on_game_won" from="Pellets" to="UI" method="_on_pellets_on_game_won"]
