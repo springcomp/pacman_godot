@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3kmc5tjccwr7"]
+
+[ext_resource type="Script" path="res://scenes/ghost.gd" id="1_gqdpp"]
+[ext_resource type="Texture2D" uid="uid://bxthftqf6345e" path="res://arts/ghost.png" id="2_q4si4"]
+[ext_resource type="Texture2D" uid="uid://dbxeq30vsqdhm" path="res://arts/eyes.png" id="3_mqh6w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oes8a"]
+atlas = ExtResource("2_q4si4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75jtj"]
+atlas = ExtResource("2_q4si4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tgaid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oes8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75jtj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2kit"]
+atlas = ExtResource("3_mqh6w")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5lqj"]
+size = Vector2(30, 30)
+
+[node name="Ghost" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_gqdpp")
+
+[node name="BodySprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_tgaid")
+frame_progress = 0.100897
+
+[node name="EyesSprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_k2kit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v5lqj")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 4.0
+simplify_path = true

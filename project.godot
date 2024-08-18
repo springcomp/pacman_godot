@@ -54,6 +54,7 @@ move_down={
 2d_render/layer_2="Walls"
 2d_render/layer_3="SmallPellet"
 2d_render/layer_4="BigPellet"
+2d_render/layer_5="Ghosts"
 
 [rendering]
 
