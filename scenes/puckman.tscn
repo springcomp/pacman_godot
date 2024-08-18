@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bftepayvxee05"]
+[gd_scene load_steps=11 format=3 uid="uid://bftepayvxee05"]
 
 [ext_resource type="Script" path="res://scenes/puckman.gd" id="1_1qs55"]
 [ext_resource type="Texture2D" uid="uid://0ugkho6ctaks" path="res://arts/pac man movement.png" id="1_5pkfx"]
+[ext_resource type="Script" path="res://scenes/utils/screen_bounds_movement.gd" id="3_u1ap7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wuy1f"]
 atlas = ExtResource("1_5pkfx")
@@ -42,21 +43,25 @@ animations = [{
 "texture": SubResource("AtlasTexture_4dam5")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccstt"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_hrn2r"]
+radius = 16.0
 
 [node name="Puckman" type="CharacterBody2D"]
 texture_filter = 1
 collision_mask = 14
+motion_mode = 1
 script = ExtResource("1_1qs55")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1uo31")
-animation = &"new_animation"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ccstt")
+shape = SubResource("CircleShape2D_hrn2r")
+
+[node name="SCreenBoundsMovement" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("3_u1ap7")
+node = NodePath("..")

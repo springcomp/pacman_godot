@@ -29,28 +29,24 @@ func _physics_process(delta: float):
 
 	velocity = speed * movement_direction
 
-	adjust_rotation()	
 	animate()	
+	adjust_rotation()	
 	move_and_slide()
 
 func process_input():
 	if Input.is_action_pressed("move_right"):
 		next_movement_direction = Vector2.RIGHT
-		rotation_degrees = 0
 	elif Input.is_action_pressed("move_down"):
 		next_movement_direction = Vector2.DOWN
-		rotation_degrees = 90
 	elif Input.is_action_pressed("move_left"):
 		next_movement_direction = Vector2.LEFT
-		rotation_degrees = 0
 	elif Input.is_action_pressed("move_up"):
 		next_movement_direction = Vector2.UP
-		rotation_degrees = 270
 	else:
 		next_movement_direction = Vector2.ZERO
 
 func can_move_in_direction(dir: Vector2, delta: float) -> bool:
-	shape_query.transform = global_transform.translated(dir * speed * delta * 1.414)
+	shape_query.transform = global_transform.translated(dir * speed * delta * 2)
 	var result = get_world_2d().direct_space_state.intersect_shape(shape_query)
 	return result.size() == 0
 
@@ -60,7 +56,7 @@ func adjust_rotation():
 	elif movement_direction == Vector2.DOWN:
 		rotation_degrees = 90
 	elif movement_direction == Vector2.LEFT:
-		rotation_degrees = 0
+		rotation_degrees = 180
 	elif movement_direction == Vector2.UP:
 		rotation_degrees = 270
 	else:
@@ -70,5 +66,4 @@ func animate():
 	if movement_direction == Vector2.ZERO:
 		sprite.stop()
 	else:
-		sprite.flip_h = (movement_direction == Vector2.LEFT)
 		sprite.play()
