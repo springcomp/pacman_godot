@@ -12,16 +12,7 @@ class_name Ghost
 
 var current_scatter_index: int = 1
 
-var ghost_parameters: Dictionary = {
-	Blinky = [ Color.CRIMSON ],
-	Inky = [ Color.TURQUOISE ],
-	Clyde = [ Color.SANDY_BROWN ],
-	Pinky = [ Color.VIOLET ],
-}
-
 func _ready():
-	var ghost_color = ghost_parameters[name][0]
-	body_sprite_2d.modulate = ghost_color
 	call_deferred("setup")
 	
 func setup():
