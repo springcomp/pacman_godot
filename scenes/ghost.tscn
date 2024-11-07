@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3kmc5tjccwr7"]
+[gd_scene load_steps=9 format=3 uid="uid://c3kmc5tjccwr7"]
 
 [ext_resource type="Script" path="res://scenes/ghost.gd" id="1_gqdpp"]
 [ext_resource type="Texture2D" uid="uid://bxthftqf6345e" path="res://arts/ghost.png" id="2_q4si4"]
 [ext_resource type="Script" path="res://scenes/ghost_color.gd" id="3_3bmwj"]
-[ext_resource type="Texture2D" uid="uid://dbxeq30vsqdhm" path="res://arts/eyes.png" id="3_mqh6w"]
+[ext_resource type="Script" path="res://scenes/ghost_eyes.gd" id="5_6yn21"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oes8a"]
 atlas = ExtResource("2_q4si4")
@@ -27,10 +27,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k2kit"]
-atlas = ExtResource("3_mqh6w")
-region = Rect2(32, 0, 32, 32)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5lqj"]
 size = Vector2(30, 30)
 
@@ -47,7 +43,7 @@ script = ExtResource("3_3bmwj")
 
 [node name="EyesSprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = SubResource("AtlasTexture_k2kit")
+script = ExtResource("5_6yn21")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v5lqj")
@@ -56,3 +52,5 @@ shape = SubResource("RectangleShape2D_v5lqj")
 path_desired_distance = 4.0
 target_desired_distance = 4.0
 simplify_path = true
+
+[connection signal="on_direction_changed" from="." to="EyesSprite2D" method="_on_ghost_on_direction_changed"]

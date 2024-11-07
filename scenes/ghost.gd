@@ -2,6 +2,8 @@ extends StaticBody2D
 
 class_name Ghost
 
+signal on_direction_changed(direction: String)
+
 @export var speed: float = 300
 @export var movement_targets: MovementTargets
 @export var tilemap_layer: TileMapLayer
@@ -38,8 +40,22 @@ func _physics_process(delta: float) -> void:
 func move(next_position: Vector2, delta: float):
 	var current_position = global_position
 	var direction = (next_position - current_position).normalized()
+	fire_on_direction_changed(direction)
 	var distance = direction * speed * delta
 	position += distance
+
+func fire_on_direction_changed(direction: Vector2):
+	var magnitudes = [
+		[ "UP",    Vector2.UP.dot(direction) ],
+		[ "LEFT",  Vector2.LEFT.dot(direction) ],
+		[ "RIGHT", Vector2.RIGHT.dot(direction) ],
+		[ "DOWN",  Vector2.DOWN.dot(direction) ]
+	]
+	magnitudes.sort_custom(sort_by_magnitude_reversed)
+	on_direction_changed.emit(magnitudes[0][0])
+
+func sort_by_magnitude_reversed(left: Array, right: Array) -> int:
+	return (left[1] > right[1])
 
 func scatter():
 	update_target_position()
