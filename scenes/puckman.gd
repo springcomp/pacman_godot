@@ -1,22 +1,14 @@
-extends CharacterBody2D
+extends SpeedyCharacterBody2D
 
 class_name PuckMan
 
-@export var speed: int = 300
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var collision_shape_2d: CollisionHelper2D = $CollisionShape2D
 
 var movement_direction = Vector2.ZERO
 var next_movement_direction = Vector2.ZERO
-var shape_query: PhysicsShapeQueryParameters2D
 
-func _ready():
-	shape_query = PhysicsShapeQueryParameters2D.new()
-	shape_query.shape = collision_shape_2d.shape
-	shape_query.collide_with_areas = false
-	shape_query.collide_with_bodies = true
-	shape_query.collision_mask = 2
 
 func _physics_process(delta: float):
 	process_input()
@@ -24,7 +16,7 @@ func _physics_process(delta: float):
 	if movement_direction == Vector2.ZERO:
 		movement_direction = next_movement_direction
 
-	if can_move_in_direction(next_movement_direction, delta):
+	if collision_shape_2d.can_move_in_direction(next_movement_direction, delta):
 		movement_direction = next_movement_direction
 
 	velocity = speed * movement_direction
@@ -44,11 +36,6 @@ func process_input():
 		next_movement_direction = Vector2.UP
 	else:
 		next_movement_direction = Vector2.ZERO
-
-func can_move_in_direction(dir: Vector2, delta: float) -> bool:
-	shape_query.transform = global_transform.translated(dir * speed * delta * 2)
-	var result = get_world_2d().direct_space_state.intersect_shape(shape_query)
-	return result.size() == 0
 
 func adjust_rotation():
 	if movement_direction == Vector2.RIGHT:

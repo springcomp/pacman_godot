@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bftepayvxee05"]
+[gd_scene load_steps=12 format=3 uid="uid://bftepayvxee05"]
 
 [ext_resource type="Script" path="res://scenes/puckman.gd" id="1_1qs55"]
 [ext_resource type="Texture2D" uid="uid://0ugkho6ctaks" path="res://arts/pac man movement.png" id="1_5pkfx"]
+[ext_resource type="Script" path="res://scenes/utils/collision_shape_2d.gd" id="3_daw2u"]
 [ext_resource type="Script" path="res://scenes/utils/screen_bounds_movement.gd" id="3_u1ap7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wuy1f"]
@@ -61,6 +62,7 @@ sprite_frames = SubResource("SpriteFrames_1uo31")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hrn2r")
+script = ExtResource("3_daw2u")
 
 [node name="SCreenBoundsMovement" type="Node" parent="." node_paths=PackedStringArray("node")]
 script = ExtResource("3_u1ap7")
