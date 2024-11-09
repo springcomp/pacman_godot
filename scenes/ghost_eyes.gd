@@ -27,5 +27,13 @@ func _extract_image_texture_from_region(atlas: AtlasTexture, region: Rect2) -> I
 	var image_texture = ImageTexture.create_from_image(image)
 	return image_texture
 
-func _on_ghost_on_direction_changed(direction: String) -> void:
-	self.texture = textures[eyes_offset_look_at[direction]]
+func _on_ghost_on_direction_changed(direction: Vector2):
+	var index = eyes_offset_look_at["LEFT"] 
+	if direction == Vector2.RIGHT:
+		index = eyes_offset_look_at["RIGHT"]
+	elif direction == Vector2.UP:
+		index = eyes_offset_look_at["UP"]
+	elif direction == Vector2.DOWN:
+		index = eyes_offset_look_at["DOWN"]
+
+	self.texture = textures[index]

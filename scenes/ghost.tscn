@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3kmc5tjccwr7"]
+[gd_scene load_steps=10 format=3 uid="uid://c3kmc5tjccwr7"]
 
 [ext_resource type="Script" path="res://scenes/ghost.gd" id="1_gqdpp"]
 [ext_resource type="Texture2D" uid="uid://bxthftqf6345e" path="res://arts/ghost.png" id="2_q4si4"]
 [ext_resource type="Script" path="res://scenes/ghost_color.gd" id="3_3bmwj"]
 [ext_resource type="Script" path="res://scenes/ghost_eyes.gd" id="5_6yn21"]
+[ext_resource type="Script" path="res://scenes/utils/collision_shape_2d.gd" id="5_tytaj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oes8a"]
 atlas = ExtResource("2_q4si4")
@@ -30,7 +31,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5lqj"]
 size = Vector2(30, 30)
 
-[node name="Ghost" type="StaticBody2D"]
+[node name="Ghost" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_gqdpp")
@@ -47,6 +48,7 @@ script = ExtResource("5_6yn21")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v5lqj")
+script = ExtResource("5_tytaj")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 4.0
